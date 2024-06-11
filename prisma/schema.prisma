@@ -18,5 +18,6 @@ model User {
   name      String
   password  String
   email     String    @unique
-  createdAt DateTime  @default(now())
+  createdAt DateTime  @default(now()) @db.Timestamp(0)
+  updatedAt DateTime  @default(now()) @db.Timestamp(0)
 }
