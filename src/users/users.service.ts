@@ -25,7 +25,7 @@ export class UsersService {
     return await this.prisma.user.findMany();
   }
 
-  async findOne(id: string) {
+  async findOne(id: number) {
     return await this.prisma.user.findUnique({
       where: {
         id,
@@ -33,7 +33,7 @@ export class UsersService {
     });
   }
 
-  async update(id: string, data: UpdateUserDto) {
+  async update(id: number, data: UpdateUserDto) {
     await this.exists(id);
 
     return this.prisma.user.update({
@@ -44,7 +44,7 @@ export class UsersService {
     });
   }
 
-  async remove(id: string) {
+  async remove(id: number) {
     await this.exists(id);
 
     return this.prisma.user.delete({
@@ -54,7 +54,7 @@ export class UsersService {
     });
   }
 
-  async exists(id: string) {
+  async exists(id: number) {
     if (!(await this.findOne(id))) {
       throw new NotFoundException(`O usuário ${id} não existe`);
     }
